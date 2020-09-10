@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.card-container {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgb(50, 51, 51);
+}
+
+.simple-card{
+  max-width: 400px;
+  max-height: 400px;    
+}
+.simple-form {
+    width: 100%;
+}
+
+.simple-form-field{
+  width: 100%;
+}
+
+.button-check{
+  font-size: 8px;
+}
+
+.button-icon{
+  width: 24px;
+}
+
+
+
+
+.simple-action-container
+{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

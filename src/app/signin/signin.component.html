@@ -1,0 +1,112 @@
+
+<div class="card-container">
+
+
+<mat-card class="simple-card">
+  <mat-card-header>
+    <div mat-card-avatar> <mat-icon>person_outline</mat-icon></div>
+    <mat-card-title>{{title}}</mat-card-title>
+  </mat-card-header>
+  
+  <form  (ngSubmit)="onSingIn()" name="signinForm" [formGroup]="signinForm" class="simple-form" novalidate>
+
+  <mat-card-content>
+
+    <mat-form-field class="simple-form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" >
+      <mat-error *ngIf="signinForm.get('email').errors?.email && !signinForm.get('email').errors?.required">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="signinForm.get('email').errors?.required">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+  
+    <mat-form-field class="simple-form-field">
+      <mat-label>Password</mat-label>
+      <input #password matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+
+      
+      <button matSuffix  mat-icon-button type="button">
+        <mat-icon   >
+          {{(password.value.length>5) ? 'check_circle_outline' : ''}}
+        </mat-icon>
+      </button>
+      
+      
+
+      <button (click)="hide = !hide" type="button" mat-icon-button matSuffix 
+        [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>  
+      <mat-error *ngIf="signinForm.get('password').errors?.minlength">
+        Please enter at least 6 characters
+      </mat-error>
+      <mat-error *ngIf="signinForm.get('password').errors?.required">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="simple-form-field">
+      <mat-label>Confirm Password</mat-label>
+      <input #passwordRepeat matInput formControlName="password_repeat" [type]="hide_repeat ? 'password' : 'text'">
+      
+      <button matSuffix  mat-icon-button type="button">
+        <mat-icon  >
+          {{(password.value === passwordRepeat.value && password.value) ? 'check_circle_outline' : ''}}
+        </mat-icon>
+      </button>
+      
+      <button (click)="hide_repeat = !hide_repeat" type="button" mat-icon-button matSuffix 
+        [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide_repeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>  
+      
+      <mat-error *ngIf="signinForm.errors?.matchError">
+        Passwords don't match
+      </mat-error>
+
+      <mat-error *ngIf="signinForm.get('password_repeat').errors?.minlength">
+        Please enter at least 6 characters
+      </mat-error>
+  
+      <mat-error *ngIf="signinForm.get('password_repeat').errors?.required">
+        Confirming Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+  
+    <mat-form-field class="simple-form-field">
+      <mat-label>Username</mat-label>
+      <input matInput type="username" formControlName="username">
+      
+      <mat-error *ngIf="signinForm.get('username').errors?.required">
+        Username is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+
+    <div class="simple-action-container">
+      <div>
+        <button (click)="onLoginWithGoogle()" mat-icon-button type="button"><img class="button-icon" src="../../assets/google-icon.png"></button>
+      </div>
+      <div>
+        <button [disabled]="!(signinForm.valid)" mat-raised-button color="primary">Signin</button>
+        <button (click)="onLogin()" type="button" mat-raised-button color="accent">Login</button>
+      </div>
+    </div>
+    
+  </mat-card-actions>
+
+
+  </form>
+</mat-card>
+
+</div>
+
+  
+

@@ -1,0 +1,63 @@
+<router-outlet></router-outlet>
+
+<div class="card-container">
+
+
+<mat-card class="simple-card">
+  <mat-card-header>
+    <div mat-card-avatar> <mat-icon>person_outline</mat-icon></div>
+    <mat-card-title>{{title}}</mat-card-title>
+  </mat-card-header>
+  
+  <form  (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm" class="simple-form" novalidate>
+
+  <mat-card-content>
+
+    <mat-form-field class="simple-form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" >
+      <mat-error *ngIf="loginForm.get('email').errors?.email && !loginForm.get('email').errors?.required">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('email').errors?.required">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+  
+    <mat-form-field class="simple-form-field">
+      <mat-label>Password</mat-label>
+      <input #password matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button (click)="hide = !hide" type="button" mat-icon-button matSuffix 
+        [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>  
+      <mat-error *ngIf="loginForm.get('password').errors?.minlength">
+        Please enter at least 6 characters
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('password').errors?.required">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>  
+
+  </mat-card-content>
+
+  <mat-card-actions >
+
+    <div class="simple-action-container">
+      <div>
+        <button (click)="onLoginWithGoogle()" mat-icon-button type="button"><img class="button-icon" src="../../assets/google-icon.png"></button>
+      </div>
+      
+      <div>  
+        <button [disabled]="!loginForm.valid" type="submit" mat-raised-button color="primary">Login</button>
+        <button (click)="onSingIn()" type="button" mat-raised-button color="accent">Signin</button>
+      </div>
+    </div>
+    
+  </mat-card-actions>
+
+  </form>
+</mat-card>
+
+</div>
